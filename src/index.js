@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
-import './index.css'
+import './locales/i18n-config'
 import App from './App'
-import reportWebVitals from './reportWebVitals'
 import NoteList from './pages/NoteList/NoteList'
 import NoteDetail from './pages/NoteDetail/NoteDetail'
 import NoteCreate from './pages/NoteCreate/NoteCreate'
 import PageNotFound from './pages/PageNotFound/PageNotFound'
+import reportWebVitals from './reportWebVitals'
+import './index.css'
 
 const router = createBrowserRouter([
   {

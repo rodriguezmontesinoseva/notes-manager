@@ -1,11 +1,19 @@
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import logoSrc from './../../assets/images/logo.png'
+import flagBritain from '../../assets/images/flag-britain.png'
+import flagSpain from '../../assets/images/flag-spain.png'
 import Logo from '../Logo/Logo'
 import ButtonPrimary from '../ButtonPrimary/ButtonPrimary'
 import styles from './header.module.css'
 
 const Header = () => {
+  const { t, i18n } = useTranslation('translator')
   const navigate = useNavigate()
+
+  const switchLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'es' ? 'en' : 'es')
+  }
 
   const goNoteList = () => {
     navigate('/')
@@ -18,12 +26,22 @@ const Header = () => {
     <header className={styles.container}>
       <Logo
         image={logoSrc}
-        alt="logo Notomatic"
-        title="Notomatic"
-        subtitle="Manage your notes"
+        alt={t('logo.alt')}
+        title={t('logo.title')}
+        subtitle={t('logo.subtitle')}
         onClick={goNoteList}
       />
-      <ButtonPrimary onClick={goNoteCreate}>New note +</ButtonPrimary>
+      <div>
+        <ButtonPrimary onClick={goNoteCreate}>
+          {t('button-primary.new-note')}
+        </ButtonPrimary>
+        <img
+          alt={t('img.flag')}
+          src={i18n.language === 'es' ? flagSpain : flagBritain}
+          onClick={switchLanguage}
+          className={styles.languageFlag}
+        ></img>
+      </div>
     </header>
   )
 }
