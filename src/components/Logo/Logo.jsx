@@ -3,7 +3,7 @@ import styles from './logo.module.css'
 
 const Logo = ({ onClick, image, alt, title, subtitle }) => {
   return (
-    <div className={styles.container} onClick={onClick}>
+    <div className={styles.container} onClick={onClick} role="link">
       <div>
         <img className={styles.img} src={image} alt={alt} />
         <span className={styles.logo_txt}>{title}</span>
