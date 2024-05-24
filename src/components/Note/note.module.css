@@ -32,14 +32,15 @@
 
 .subtitle{
   font-size: medium;
-  margin:10px 0;
+  margin:0 0 5px;
+  color:#b8b8b8
 
 }
 
 .text_content{
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 6; 
   display: -webkit-box;
   -webkit-box-orient: vertical
 }

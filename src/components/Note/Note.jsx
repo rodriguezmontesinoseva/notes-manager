@@ -28,7 +28,7 @@ const Note = ({ title, content, subtitle, onClickNote, onClickTrash }) => {
       onMouseLeave={() => setIsNoteHovered(false)}
     >
       <div className={styles.title_row}>
-        <h5 className={styles.title}>Titulo</h5>
+        <h5 className={styles.title}>{title}</h5>
 
         {isNoteHovered && (
           <img
@@ -41,8 +41,8 @@ const Note = ({ title, content, subtitle, onClickNote, onClickTrash }) => {
           />
         )}
       </div>
-      <h6 className={styles.subtitle}>22/22/22</h6>
-      <p className={styles.text__content}>Contenido</p>
+      <h6 className={styles.subtitle}>{subtitle}</h6>
+      <p className={styles.text_content}>{content}</p>
     </div>
   )
 }
