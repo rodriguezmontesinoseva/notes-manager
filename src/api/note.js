@@ -7,18 +7,21 @@ export async function fetchAllNotes() {
   return response.data
 }
 
-// const createNote = async formValues => {
-//   return (await axios.post(`${BASE_URL}`, formValues)).data
-// }
+export async function createNote(formValues) {
+  const response = await axios.post(`${BASE_URL}`, formValues)
+  return response.data
+}
 
-// const deleteNoteById = async noteId => {
-//   return (await axios.delete(`${BASE_URL}/${noteId}`)).data
-// }
+export async function deleteNoteById(noteId) {
+  return await axios.delete(`${BASE_URL}/${noteId}`)
+}
 
-// const updateNoteById = async (id, values) => {
-//   return (await axios.patch(`${BASE_URL}/${id}`, values)).data
-// }
+export async function updateNoteById(id, values) {
+  const response = await axios.patch(`${BASE_URL}/${id}`, values)
+  return response.data
+}
 
-// const fetchNoteById = async noteId => {
-//   return (await axios.get(`${BASE_URL}/${noteId}`)).data
-// }
+export async function fetchNoteById(noteId) {
+  const response = await axios.get(`${BASE_URL}/${noteId}`)
+  return response.data
+}

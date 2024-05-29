@@ -3,5 +3,6 @@
   "logo.title": "Notomatic",
   "logo.subtitle": "Organiza tus notas",
   "button-primary.new-note": "Nueva nota +",
-  "img.flag": "Idioma español"
+  "img.flag": "Idioma español",
+  "form.new-note.title": "Nueva nota"
 }

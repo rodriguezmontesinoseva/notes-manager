@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
 import styles from './buttonPrimary.module.css'
 
-const ButtonPrimary = ({ children, onClick }) => {
+const ButtonPrimary = ({ children, onClick, type = 'button' }) => {
   return (
-    <button type="button" className={styles.button} onClick={onClick}>
+    <button type={type} className={styles.button} onClick={onClick}>
       {children}
     </button>
   )
@@ -12,6 +12,7 @@ const ButtonPrimary = ({ children, onClick }) => {
 ButtonPrimary.propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
+  type: PropTypes.string,
 }
 
 export default ButtonPrimary

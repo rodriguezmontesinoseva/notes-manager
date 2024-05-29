@@ -3,5 +3,6 @@
   "logo.title": "Notomatic",
   "logo.subtitle": "Manage your notes",
   "button-primary.new-note": "New note +",
-  "img.flag": "English language"
+  "img.flag": "English language",
+  "form.new-note.title": "New note"
 }
