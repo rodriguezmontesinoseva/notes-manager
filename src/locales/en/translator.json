@@ -4,5 +4,9 @@
   "logo.subtitle": "Manage your notes",
   "button-primary.new-note": "New note +",
   "img.flag": "English language",
-  "form.new-note.title": "New note"
+  "form.new-note.title": "New note",
+  "form.new-note.input-title": "Title",
+  "form.new-note.input-contain": "Contain",
+  "form.new-note.save": "Save"
+
 }

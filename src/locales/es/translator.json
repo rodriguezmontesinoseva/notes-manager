@@ -4,5 +4,10 @@
   "logo.subtitle": "Organiza tus notas",
   "button-primary.new-note": "Nueva nota +",
   "img.flag": "Idioma español",
-  "form.new-note.title": "Nueva nota"
+  "form.new-note.title": "Nueva nota",
+  "form.new-note.input-title": "Título",
+  "form.new-note.input-contain": "Contenido",
+  "form.new-note.save": "Guardar"
+
+  
 }

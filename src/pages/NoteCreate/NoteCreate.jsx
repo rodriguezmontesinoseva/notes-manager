@@ -20,7 +20,9 @@ const NoteCreate = () => {
     navigate('/')
   }
 
-  return <NoteForm title={t('form.new-note.title')} onSubmit={handleSubmit} />
+  return (
+    <NoteForm title={t('form.new-note.title')} onSubmit={handleSubmit} t={t} />
+  )
 }
 
 export default NoteCreate

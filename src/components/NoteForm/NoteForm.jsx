@@ -5,7 +5,7 @@ import trashBlack from 'assets/images/trash-black.png'
 import ButtonPrimary from 'components/ButtonPrimary/ButtonPrimary'
 import styles from './noteForm.module.css'
 
-const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete }) => {
+const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
   const [formValues, setFormValues] = useState({
     title: note?.title || '',
     content: note?.content || '',
@@ -51,7 +51,7 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete }) => {
 
   const titleInput = (
     <>
-      <label htmlFor="title">Title</label>
+      <label htmlFor="title">{t('form.new-note.input-title')}</label>
       <input
         type="text"
         name="title"
@@ -64,7 +64,7 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete }) => {
 
   const contentInput = (
     <>
-      <label htmlFor="content">Contenido</label>
+      <label htmlFor="content">{t('form.new-note.input-contain')}</label>
       <textarea
         type="text"
         name="content"
@@ -76,7 +76,9 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete }) => {
     </>
   )
 
-  const submitBtn = <ButtonPrimary type="submit">Submit</ButtonPrimary>
+  const submitBtn = (
+    <ButtonPrimary type="submit">{t('form.new-note.save')}</ButtonPrimary>
+  )
 
   return (
     <form onSubmit={handleSubmit} className={styles.container}>
@@ -99,4 +101,5 @@ NoteForm.propTypes = {
   note: PropTypes.object,
   onClickEdit: PropTypes.func,
   onClickDelete: PropTypes.func,
+  t: PropTypes.func,
 }
