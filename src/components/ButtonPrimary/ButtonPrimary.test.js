@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import ButtonPrimary from './ButtonPrimary'
 
 describe('Button Primary component', () => {
@@ -7,5 +7,12 @@ describe('Button Primary component', () => {
     render(<ButtonPrimary>{buttonText} </ButtonPrimary>)
     const buttonElement = screen.getByText(buttonText)
     expect(buttonElement).toBeInTheDocument()
+  })
+  it('is clicked', () => {
+    const handleClick = jest.fn()
+    render(<ButtonPrimary onClick={handleClick}>Test</ButtonPrimary>)
+
+    fireEvent.click(screen.getByText('Test'))
+    expect(handleClick).toHaveBeenCalled()
   })
 })

@@ -36,6 +36,7 @@ describe('Header component', () => {
     fireEvent.click(logoElement)
     expect(navigate).toHaveBeenCalledWith('/')
   })
+
   it('redirects to new-note page when clicking button', () => {
     const { useNavigate } = require('react-router-dom')
     const navigate = jest.fn()

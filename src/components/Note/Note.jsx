@@ -1,20 +1,14 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+
+import trashGrey from 'assets/images/trash-grey.png'
+import trashRed from 'assets/images/trash-red.png'
+
 import styles from './note.module.css'
-import trashGrey from './../../assets/images/trash-grey.png'
-import trashRed from './../../assets/images/trash-red.png'
 
 const Note = ({ title, content, subtitle, onClickNote, onClickTrash }) => {
   const [isNoteHovered, setIsNoteHovered] = useState(false)
   const [isTrashHovered, setIsTrashHovered] = useState(false)
-
-  useEffect(() => {
-    console.log('isNoteHovered', isNoteHovered)
-  }, [isNoteHovered])
-
-  useEffect(() => {
-    console.log('isTrashHovered', isTrashHovered)
-  }, [isTrashHovered])
 
   function onClickTrash_(e) {
     onClickTrash()
