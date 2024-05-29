@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import logoSrc from './../../assets/images/logo.png'
-import flagBritain from '../../assets/images/flag-britain.png'
-import flagSpain from '../../assets/images/flag-spain.png'
-import Logo from '../Logo/Logo'
-import ButtonPrimary from '../ButtonPrimary/ButtonPrimary'
+import flagBritain from 'assets/images/flag-britain.png'
+import flagSpain from 'assets/images/flag-spain.png'
+import Logo from 'components/Logo/Logo'
+import ButtonPrimary from 'components/ButtonPrimary/ButtonPrimary'
 import styles from './header.module.css'
 
 const Header = () => {
@@ -31,6 +31,7 @@ const Header = () => {
         subtitle={t('logo.subtitle')}
         onClick={goNoteList}
       />
+
       <div>
         <ButtonPrimary onClick={goNoteCreate}>
           {t('button-primary.new-note')}
@@ -40,7 +41,7 @@ const Header = () => {
           src={i18n.language === 'es' ? flagSpain : flagBritain}
           onClick={switchLanguage}
           className={styles.languageFlag}
-        ></img>
+        />
       </div>
     </header>
   )

@@ -1,13 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { store } from 'store'
 import './locales/i18n-config'
-import App from './App'
-import NoteList from './pages/NoteList/NoteList'
-import NoteDetail from './pages/NoteDetail/NoteDetail'
-import NoteCreate from './pages/NoteCreate/NoteCreate'
-import PageNotFound from './pages/PageNotFound/PageNotFound'
-import reportWebVitals from './reportWebVitals'
+
+import App from 'App'
+import NoteList from 'pages/NoteList/NoteList'
+import NoteDetail from 'pages/NoteDetail/NoteDetail'
+import NoteCreate from 'pages/NoteCreate/NoteCreate'
+import PageNotFound from 'pages/PageNotFound/PageNotFound'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -26,11 +28,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />,
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 )
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
