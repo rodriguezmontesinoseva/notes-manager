@@ -1,19 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import pencil from 'assets/images/pencil.png'
 import trashBlack from 'assets/images/trash-black.png'
 import ButtonPrimary from 'components/ButtonPrimary/ButtonPrimary'
 import styles from './noteForm.module.css'
+import { FieldError } from 'components/FieldError/FieldError'
+import { maxCharacters, minCharacters } from 'utils/inputValidator'
 
 const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
   const [formValues, setFormValues] = useState({
     title: note?.title || '',
     content: note?.content || '',
   })
-  // const [formErrors, setFormErrors] = useState({
-  //   title: note?.title ? undefined : true,
-  //   content: note?.content ? undefined : true,
-  // })
+  const [formErrors, setFormErrors] = useState({
+    title: true,
+    content: true,
+  })
+
+  useEffect(() => {
+    console.log('formErrors ', formErrors)
+  }, [formErrors])
 
   const editButton = () => {
     console.log('clic editar')
@@ -23,10 +29,41 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
     console.log('clic delete')
   }
 
+  //CUANDO HAGO CLICK EN LA BANDERA EL ERROR SE RESETEA
+  const validator = {
+    title: value => {
+      return minCharacters(value, 3, t) || maxCharacters(value, 20, t)
+    },
+    content: value => {
+      return minCharacters(value, 3, t)
+    },
+  }
+
+  const hasError = () => {
+    for (const fieldName in formErrors) {
+      console.log('fieldName ', fieldName)
+      console.log('formErrors ', formErrors)
+      console.log('formErrors[fieldName] ', formErrors[fieldName])
+
+      if (formErrors[fieldName]) {
+        return true
+      }
+    }
+    return false
+  }
+
   const updateFormValues = e => {
-    const name = e.target.name
-    const value = e.target.value
-    setFormValues({ ...formValues, [name]: value })
+    const inputName = e.target.name
+    const inputValue = e.target.value
+    setFormValues({ ...formValues, [inputName]: inputValue })
+    validations({ inputName, inputValue })
+  }
+
+  const validations = ({ inputName, inputValue }) => {
+    setFormErrors({
+      ...formErrors,
+      [inputName]: validator[inputName](inputValue),
+    })
   }
 
   const handleSubmit = e => {
@@ -59,6 +96,7 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
         onChange={updateFormValues}
         value={formValues.title}
       />
+      <FieldError message={formErrors.title} />
     </>
   )
 
@@ -73,11 +111,18 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
         onChange={updateFormValues}
         value={formValues.content}
       />
+      <FieldError message={formErrors.content} />
     </>
   )
 
   const submitBtn = (
-    <ButtonPrimary type="submit">{t('form.new-note.save')}</ButtonPrimary>
+    <ButtonPrimary
+      type="submit"
+      isDisabled={hasError()}
+      onClick={() => onSubmit(formValues)}
+    >
+      {t('form.new-note.save')}
+    </ButtonPrimary>
   )
 
   return (

@@ -7,7 +7,7 @@
   "form.new-note.title": "Nueva nota",
   "form.new-note.input-title": "Título",
   "form.new-note.input-contain": "Contenido",
-  "form.new-note.save": "Guardar"
-
-  
+  "form.new-note.save": "Guardar",
+  "input-validator.min-characters.message": "El campo debe tener más de {{min}} caracteres",
+  "input-validator.max-characters.message": "El campo debe tener menos de {{max}} caracteres"
 }
