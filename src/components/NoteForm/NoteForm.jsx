@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import pencil from 'assets/images/pencil.png'
 import trashBlack from 'assets/images/trash-black.png'
@@ -16,11 +16,9 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
     title: true,
     content: true,
   })
-
   useEffect(() => {
     console.log('formErrors ', formErrors)
   }, [formErrors])
-
   const editButton = () => {
     console.log('clic editar')
   }
@@ -28,7 +26,6 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
   const deleteButton = () => {
     console.log('clic delete')
   }
-
   //CUANDO HAGO CLICK EN LA BANDERA EL ERROR SE RESETEA
   const validator = {
     title: value => {
@@ -41,10 +38,6 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
 
   const hasError = () => {
     for (const fieldName in formErrors) {
-      console.log('fieldName ', fieldName)
-      console.log('formErrors ', formErrors)
-      console.log('formErrors[fieldName] ', formErrors[fieldName])
-
       if (formErrors[fieldName]) {
         return true
       }
@@ -107,7 +100,7 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
         type="text"
         name="content"
         id="content"
-        rows="5"
+        maxLength={250}
         onChange={updateFormValues}
         value={formValues.content}
       />

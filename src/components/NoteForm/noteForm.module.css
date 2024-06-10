@@ -54,6 +54,7 @@ height: 20px;
 .content textarea{
   border: 1px solid  #b8b8b8;
   border-radius: 4px;
+  resize: none;
   }
 
 .submit_btn {
