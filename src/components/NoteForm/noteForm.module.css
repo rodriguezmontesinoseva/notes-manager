@@ -56,6 +56,11 @@ height: 20px;
   border-radius: 4px;
   resize: none;
   }
+  
+.content pre {
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
+}
 
 .submit_btn {
   text-align: right;

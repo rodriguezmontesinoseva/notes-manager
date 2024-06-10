@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -7,6 +8,7 @@ import NoteForm from 'components/NoteForm/NoteForm'
 const NoteDetail = () => {
   const { noteId } = useParams()
   const { t } = useTranslation('translator')
+  const [isEditable, setIsEditable] = useState(false)
 
   const note = useSelector(
     store => store.notesSlice.noteList.find(note => note.id === noteId), //esto solo retorna una nota, no todo el listado
@@ -15,7 +17,6 @@ const NoteDetail = () => {
 
   return (
     <>
-      <h1>Note detail</h1>
       {note && (
         <NoteForm
           title={note.title}
@@ -24,8 +25,8 @@ const NoteDetail = () => {
           // otra opcione es meterle el usetranslation en el noteform
           note={note}
           onClickDelete={() => alert('delete')}
-          onClickEdit={() => alert('edit')}
-          isEditable={false}
+          onClickEdit={() => setIsEditable(!isEditable)}
+          isEditable={isEditable}
         />
       )}
     </>
