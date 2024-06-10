@@ -7,7 +7,15 @@ import styles from './noteForm.module.css'
 import { FieldError } from 'components/FieldError/FieldError'
 import { maxCharacters, minCharacters } from 'utils/inputValidator'
 
-const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
+const NoteForm = ({
+  isEditable = true,
+  title,
+  onSubmit,
+  note,
+  onClickEdit,
+  onClickDelete,
+  t,
+}) => {
   const [formValues, setFormValues] = useState({
     title: note?.title || '',
     content: note?.content || '',
@@ -19,13 +27,13 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
   useEffect(() => {
     console.log('formErrors ', formErrors)
   }, [formErrors])
-  const editButton = () => {
-    console.log('clic editar')
-  }
+  // const editButton = () => {
+  //   console.log('clic editar')
+  // }
 
-  const deleteButton = () => {
-    console.log('clic delete')
-  }
+  // const deleteButton = () => {
+  //   console.log('clic delete')
+  // }
   //CUANDO HAGO CLICK EN LA BANDERA EL ERROR SE RESETEA
   const validator = {
     title: value => {
@@ -67,12 +75,12 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
   const actionIcons = (
     <div className={styles.actionIcons_container}>
       {onClickEdit && (
-        <button type="button" className={styles.icon} onClick={editButton}>
+        <button type="button" className={styles.icon} onClick={onClickEdit}>
           <img src={pencil} alt="edit icon" />
         </button>
       )}
       {onClickDelete && (
-        <button type="button" className={styles.icon} onClick={deleteButton}>
+        <button type="button" className={styles.icon} onClick={onClickDelete}>
           <img src={trashBlack} alt="delete icon" />
         </button>
       )}
@@ -124,8 +132,10 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
         <h2>{title}</h2>
         {actionIcons}
       </header>
-      <div className={styles.title}>{titleInput}</div>
-      <div className={styles.content}>{contentInput}</div>
+      <div className={styles.title}>{isEditable && titleInput}</div>
+      <div className={styles.content}>
+        {isEditable ? contentInput : <pre>{note.content}</pre>}
+      </div>
       <div className={styles.submit_btn}>{onSubmit && submitBtn}</div>
     </form>
   )
@@ -134,6 +144,7 @@ const NoteForm = ({ title, onSubmit, note, onClickEdit, onClickDelete, t }) => {
 export default NoteForm
 
 NoteForm.propTypes = {
+  isEditable: PropTypes.bool,
   title: PropTypes.string,
   onSubmit: PropTypes.func,
   note: PropTypes.object,
