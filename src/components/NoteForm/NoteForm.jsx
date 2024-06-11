@@ -17,19 +17,18 @@ const NoteForm = ({
   t,
 }) => {
   const [formValues, setFormValues] = useState({
-    title: note?.title || '',
-    content: note?.content || '',
+    title: note?.title,
+    content: note?.content,
   })
+
   const [formErrors, setFormErrors] = useState({
-    title: true,
-    content: true,
+    title: note?.title ? undefined : true,
+    content: note?.content ? undefined : true,
   })
+
   useEffect(() => {
     console.log('formErrors ', formErrors)
   }, [formErrors])
-  // const editButton = () => {
-  //   console.log('clic editar')
-  // }
 
   // const deleteButton = () => {
   //   console.log('clic delete')
@@ -74,7 +73,7 @@ const NoteForm = ({
 
   const actionIcons = (
     <div className={styles.actionIcons_container}>
-      {onClickEdit && (
+      {!isEditable && (
         <button type="button" className={styles.icon} onClick={onClickEdit}>
           <img src={pencil} alt="edit icon" />
         </button>
@@ -146,7 +145,7 @@ export default NoteForm
 NoteForm.propTypes = {
   isEditable: PropTypes.bool,
   title: PropTypes.string,
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   note: PropTypes.object,
   onClickEdit: PropTypes.func,
   onClickDelete: PropTypes.func,

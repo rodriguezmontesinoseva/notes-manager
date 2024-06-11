@@ -1,33 +1,49 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import NoteForm from 'components/NoteForm/NoteForm'
+import { updateNoteById } from 'api/note'
+import { updateNote } from 'store/notes/notes-slice'
+import PageNotFound from 'pages/PageNotFound/PageNotFound'
 
 const NoteDetail = () => {
   const { noteId } = useParams()
   const { t } = useTranslation('translator')
   const [isEditable, setIsEditable] = useState(false)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const note = useSelector(
     store => store.notesSlice.noteList.find(note => note.id === noteId), //esto solo retorna una nota, no todo el listado
   )
-  console.log('note ', note)
+
+  const submit = async formValues => {
+    const response = await updateNoteById(note.id, {
+      ...formValues,
+      created_at: new Date().toLocaleDateString(),
+    })
+    dispatch(updateNote(response))
+    setIsEditable(false)
+    alert(t('form.update-note.modal')) // tengo que aceptarlo 2 veces para que desaparezca
+    navigate('/')
+  }
 
   return (
     <>
-      {note && (
+      {note ? (
         <NoteForm
-          title={note.title}
-          // onSubmit={handleSubmit}
-          t={t} // hay que pasarsela porque noteform la recibe para la label de los inputs
-          // otra opcione es meterle el usetranslation en el noteform
+          t={t}
+          isEditable={isEditable}
+          title={isEditable ? t('form.update-note.title') : note.title}
           note={note}
           onClickDelete={() => alert('delete')}
           onClickEdit={() => setIsEditable(!isEditable)}
-          isEditable={isEditable}
+          onSubmit={isEditable && submit}
         />
+      ) : (
+        <PageNotFound />
       )}
     </>
   )
