@@ -11,5 +11,8 @@
   "input-validator.min-characters.message": "El campo debe tener más de {{min}} caracteres",
   "input-validator.max-characters.message": "El campo debe tener menos de {{max}} caracteres",
   "form.update-note.title":"Editar nota",
-  "form.update-note.modal":"La nota ha sido actualizada"
+  "form.update-note.modal":"La nota ha sido actualizada",
+  "form.textfield-error-min-chars": "El título debe contener al menos 3 caracteres",
+  "form.textfield-error-max-chars": "El título no puede exceder de 20 caracteres",
+  "form.textarea-error-min-chars": "El contenido debe contener al menos 3 caracteres"
 }

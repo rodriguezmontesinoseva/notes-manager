@@ -11,5 +11,8 @@
   "input-validator.min-characters.message": "Field must be longer than {{min}} characters",
   "input-validator.max-characters.message": "Field must be less than {{max}} characters long",
   "form.update-note.title":"Update note",
-  "form.update-note.modal":"The note has been updated"
+  "form.update-note.modal":"The note has been updated",
+  "form.textfield-error-min-chars": "The title must be at least 3 characters long",
+  "form.textfield-error-max-chars": "The title can't exceed 20 characters",
+  "form.textarea-error-min-chars": "The content must be at least 3 characters long"
 }
