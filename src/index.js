@@ -6,10 +6,10 @@ import { store } from 'store'
 import './locales/i18n-config'
 
 import App from 'App'
-import NoteList from 'pages/NoteList/NoteList'
 import NoteDetail from 'pages/NoteDetail/NoteDetail'
 import NoteCreate from 'pages/NoteCreate/NoteCreate'
 import PageNotFound from 'pages/PageNotFound/PageNotFound'
+import NoteListContainer from 'pages/NoteList/NoteListContainer'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     children: [
-      { path: '/', element: <NoteList /> },
+      { path: '/', element: <NoteListContainer /> },
       { path: 'note/:noteId', element: <NoteDetail /> },
       { path: 'note/new', element: <NoteCreate /> },
       { path: '*', element: <PageNotFound /> },

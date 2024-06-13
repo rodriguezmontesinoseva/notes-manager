@@ -21,7 +21,11 @@
 .title{
   font-size: large;
   margin:10px 0;
-
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 6; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical
 }
 
 .trash_icon{
