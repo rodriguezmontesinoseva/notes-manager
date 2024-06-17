@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Note from 'components/Note/Note'
 import { deleteNoteById } from 'api/note'
@@ -7,10 +7,9 @@ import { useTranslation } from 'react-i18next'
 
 import styles from './noteList.module.css'
 
-const NoteList = () => {
+const NoteList = ({ noteList }) => {
   const { t } = useTranslation('translator')
 
-  const noteList = useSelector(store => store.notesSlice.noteList)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 

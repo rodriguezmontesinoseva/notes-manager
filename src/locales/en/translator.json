@@ -15,5 +15,6 @@
   "form.textfield-error-min-chars": "The title must be at least 3 characters long",
   "form.textfield-error-max-chars": "The title can't exceed 20 characters",
   "form.textarea-error-min-chars": "The content must be at least 3 characters long",
-  "modal.delete-note.contain":"¿Delete note?"
+  "modal.delete-note.contain":"¿Delete note?",
+  "search-bar.placeholder": "Search your notes..."
 }
