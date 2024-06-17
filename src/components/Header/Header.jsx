@@ -40,7 +40,7 @@ const Header = () => {
           alt={t('img.flag')}
           src={i18n.language === 'es' ? flagSpain : flagBritain}
           onClick={switchLanguage}
-          className={styles.languageFlag}
+          className={styles.language_flag}
         />
       </div>
     </header>

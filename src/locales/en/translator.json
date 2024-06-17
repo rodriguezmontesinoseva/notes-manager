@@ -3,5 +3,11 @@
   "logo.title": "Notomatic",
   "logo.subtitle": "Manage your notes",
   "button-primary.new-note": "New note +",
-  "img.flag": "English language"
+  "img.flag": "English language",
+  "form.new-note.title": "New note",
+  "form.new-note.input-title": "Title",
+  "form.new-note.input-contain": "Contain",
+  "form.new-note.save": "Save",
+  "input-validator.min-characters.message": "Field must be longer than {{min}} characters",
+  "input-validator.max-characters.message": "Field must be less than {{max}} characters long"
 }
