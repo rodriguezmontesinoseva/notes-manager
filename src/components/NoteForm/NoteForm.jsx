@@ -110,7 +110,6 @@ const NoteForm = ({
         titleError !== '' ||
         titleError !== ''
       }
-      onClick={() => onSubmit(formValues)}
     >
       {t('form.new-note.save')}
     </ButtonPrimary>

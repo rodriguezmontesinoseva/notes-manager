@@ -29,6 +29,7 @@ const NoteListContainer = () => {
     return containsTitle || containsContent || containsCreatedAt
   })
 
+  console.log('noteList ', noteList.length)
   return (
     <>
       <div className={styles.searchBar_container}>
