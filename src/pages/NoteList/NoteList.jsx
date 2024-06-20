@@ -1,9 +1,8 @@
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Note from 'components/Note/Note'
-import { deleteNoteById } from 'api/note'
-import { deleteNote } from 'store/notes/notes-slice'
 import { useTranslation } from 'react-i18next'
+
+import Note from 'components/Note/Note'
+import { useDeleteNote } from 'hooks/useDeleteNote'
 
 import styles from './noteList.module.css'
 
@@ -11,16 +10,7 @@ const NoteList = ({ noteList }) => {
   const { t } = useTranslation('translator')
 
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-
-  // XX abstraer esta función
-  async function deleteNote_(note) {
-    if (window.confirm(t('modal.delete-note.contain'))) {
-      deleteNoteById(note.id)
-      dispatch(deleteNote(note))
-      navigate('/')
-    }
-  }
+  const deleteNote_ = useDeleteNote()
 
   return noteList.map(note => (
     <div key={note.id} className={styles.card_container}>
@@ -28,7 +18,7 @@ const NoteList = ({ noteList }) => {
         title={note.title}
         subtitle={note.created_at}
         content={note.content}
-        onClickTrash={() => deleteNote_(note)}
+        onClickTrash={() => deleteNote_(note, t)}
         onClickNote={() => navigate(`note/${note.id}`)}
       />
     </div>
