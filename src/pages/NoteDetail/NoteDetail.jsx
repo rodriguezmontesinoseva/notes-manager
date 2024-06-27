@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import NoteForm from 'components/NoteForm/NoteForm'
-import { updateNoteById } from 'api/note'
-import { updateNote } from 'store/notes/notes-slice'
+import { deleteNoteById, updateNoteById } from 'api/note'
+import { deleteNote, updateNote } from 'store/notes/notes-slice'
 import PageNotFound from 'pages/PageNotFound/PageNotFound'
 
 const NoteDetail = () => {
@@ -30,6 +30,14 @@ const NoteDetail = () => {
     navigate('/')
   }
 
+  async function deleteNote_() {
+    if (window.confirm(t('modal.delete-note.contain'))) {
+      deleteNoteById(note.id)
+      dispatch(deleteNote(note))
+      navigate('/')
+    }
+  }
+
   return (
     <>
       {note ? (
@@ -38,7 +46,7 @@ const NoteDetail = () => {
           isEditable={isEditable}
           title={isEditable ? t('form.update-note.title') : note.title}
           note={note}
-          onClickDelete={() => alert('delete')}
+          onClickDelete={deleteNote_}
           onClickEdit={() => setIsEditable(!isEditable)}
           onSubmit={isEditable && submit}
         />

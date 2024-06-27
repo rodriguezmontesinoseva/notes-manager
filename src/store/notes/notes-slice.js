@@ -18,8 +18,15 @@ export const noteSlice = createSlice({
       )
       state.noteList[indexToUpdate] = action.payload
     },
+    deleteNote: (state, action) => {
+      const filteredNoteList = state.noteList.filter(
+        note => note.id !== action.payload.id,
+      )
+      state.noteList = filteredNoteList
+    },
   },
 })
 
-export const { setNoteList, addNote, updateNote } = noteSlice.actions
+export const { setNoteList, addNote, updateNote, deleteNote } =
+  noteSlice.actions
 export const notesReducer = noteSlice.reducer
