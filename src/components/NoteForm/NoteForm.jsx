@@ -110,7 +110,6 @@ const NoteForm = ({
         titleError !== '' ||
         titleError !== ''
       }
-      onClick={() => onSubmit(formValues)}
     >
       {t('form.new-note.save')}
     </ButtonPrimary>
@@ -139,6 +138,6 @@ NoteForm.propTypes = {
   onSubmit: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   note: PropTypes.object,
   onClickEdit: PropTypes.func,
-  onClickDelete: PropTypes.func,
+  onClickDelete: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   t: PropTypes.func,
 }

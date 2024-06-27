@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types'
 import styles from './buttonPrimary.module.css'
 
-const ButtonPrimary = ({ children, onClick, type = 'button', isDisabled }) => {
+const ButtonPrimary = ({
+  children,
+  onClick = () => {},
+  type = 'button',
+  isDisabled,
+}) => {
   return (
     <button
       type={type}
