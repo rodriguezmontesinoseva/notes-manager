@@ -13,37 +13,27 @@ const NoteListContainer = () => {
   const noteList = useSelector(store => store.notesSlice.noteList)
   const [searchText, setSearchText] = useState('')
 
-  const filteredNoteList = noteList.filter(note => {
-    const titleUppercase = note?.title?.trim().toUpperCase()
-    const containsTitle = titleUppercase.includes(
-      searchText.trim().toUpperCase(),
-    )
+  const filteredNoteList = noteList.filter(
+    note =>
+      note.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      note.content.toLowerCase().includes(searchText.toLowerCase()) ||
+      note.created_at.toLowerCase().includes(searchText.toLowerCase()),
+  )
 
-    const contentUppercase = note?.content?.trim().toUpperCase()
-    const containsContent = contentUppercase.includes(
-      searchText.trim().toUpperCase(),
-    )
-
-    const containsCreatedAt = note.created_at.includes(searchText.trim())
-
-    return containsTitle || containsContent || containsCreatedAt
-  })
-
-  console.log('noteList ', noteList.length)
   return (
     <>
       <div className={styles.searchBar_container}>
-        {
+        {noteList?.length !== 0 && (
           <SearchBar
             onTextChange={setSearchText}
             placeholder={t('search-bar.placeholder')}
           />
-        }
+        )}
       </div>
 
       <div className={styles.cards_container}>
         {noteList?.length === 0 ? (
-          <NoteListEmpty />
+          <NoteListEmpty t={t} />
         ) : (
           <NoteList noteList={filteredNoteList} />
         )}

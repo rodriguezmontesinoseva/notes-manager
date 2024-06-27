@@ -16,5 +16,7 @@
   "form.textfield-error-max-chars": "El título no puede exceder de 20 caracteres",
   "form.textarea-error-min-chars": "El contenido debe contener al menos 3 caracteres",
   "modal.delete-note.contain":"¿Desea borrar la nota?",
-  "search-bar.placeholder": "Busca tus notas..."
+  "search-bar.placeholder": "Busca tus notas...",
+  "list-empty.message": "No hay notas, ¿quieres ",
+  "list-empty.link": "crear una? "
 }
