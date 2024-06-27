@@ -5,7 +5,6 @@ import trashBlack from 'assets/images/trash-black.png'
 import ButtonPrimary from 'components/ButtonPrimary/ButtonPrimary'
 import styles from './noteForm.module.css'
 import { FieldError } from 'components/FieldError/FieldError'
-import { maxCharacters, minCharacters } from 'utils/inputValidator'
 
 const NoteForm = ({
   isEditable = true,
@@ -20,51 +19,37 @@ const NoteForm = ({
     title: note?.title || '',
     content: note?.content || '',
   })
-  const [formErrors, setFormErrors] = useState({
-    title: true,
-    content: true,
-  })
-  useEffect(() => {
-    console.log('formErrors ', formErrors)
-  }, [formErrors])
-  // const editButton = () => {
-  //   console.log('clic editar')
-  // }
 
-  // const deleteButton = () => {
-  //   console.log('clic delete')
-  // }
-  //CUANDO HAGO CLICK EN LA BANDERA EL ERROR SE RESETEA
-  const validator = {
-    title: value => {
-      return minCharacters(value, 3, t) || maxCharacters(value, 20, t)
-    },
-    content: value => {
-      return minCharacters(value, 3, t)
-    },
-  }
+  const [titleError, setTitleError] = useState('')
+  const [contentError, setContentError] = useState('')
 
-  const hasError = () => {
-    for (const fieldName in formErrors) {
-      if (formErrors[fieldName]) {
-        return true
+  const validate = () => {
+    if (formValues?.title) {
+      if (formValues.title.length < 3) {
+        setTitleError('form.textfield-error-min-chars')
+      } else if (formValues.title.length >= 3 && formValues.title.length < 20) {
+        setTitleError('')
+      } else if (formValues.title.length > 20) {
+        setTitleError('form.textfield-error-max-chars')
       }
     }
-    return false
+
+    if (formValues?.content) {
+      if (formValues?.content.length < 3) {
+        setContentError('form.textarea-error-min-chars')
+      } else setContentError('')
+    }
   }
+
+  useEffect(() => {
+    validate()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formValues])
 
   const updateFormValues = e => {
     const inputName = e.target.name
     const inputValue = e.target.value
     setFormValues({ ...formValues, [inputName]: inputValue })
-    validations({ inputName, inputValue })
-  }
-
-  const validations = ({ inputName, inputValue }) => {
-    setFormErrors({
-      ...formErrors,
-      [inputName]: validator[inputName](inputValue),
-    })
   }
 
   const handleSubmit = e => {
@@ -74,7 +59,7 @@ const NoteForm = ({
 
   const actionIcons = (
     <div className={styles.actionIcons_container}>
-      {onClickEdit && (
+      {!isEditable && (
         <button type="button" className={styles.icon} onClick={onClickEdit}>
           <img src={pencil} alt="edit icon" />
         </button>
@@ -97,7 +82,7 @@ const NoteForm = ({
         onChange={updateFormValues}
         value={formValues.title}
       />
-      <FieldError message={formErrors.title} />
+      <FieldError message={titleError !== '' ? t(titleError) : ''} />
     </>
   )
 
@@ -112,14 +97,19 @@ const NoteForm = ({
         onChange={updateFormValues}
         value={formValues.content}
       />
-      <FieldError message={formErrors.content} />
+      <FieldError message={contentError !== '' ? t(contentError) : ''} />
     </>
   )
 
   const submitBtn = (
     <ButtonPrimary
       type="submit"
-      isDisabled={hasError()}
+      isDisabled={
+        formValues.title === '' ||
+        formValues.content === '' ||
+        titleError !== '' ||
+        titleError !== ''
+      }
       onClick={() => onSubmit(formValues)}
     >
       {t('form.new-note.save')}
@@ -146,7 +136,7 @@ export default NoteForm
 NoteForm.propTypes = {
   isEditable: PropTypes.bool,
   title: PropTypes.string,
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   note: PropTypes.object,
   onClickEdit: PropTypes.func,
   onClickDelete: PropTypes.func,

@@ -20,7 +20,7 @@ const NoteCreate = () => {
         content: 'Test Content',
         created_at: new Date().toLocaleDateString(),
       })
-      console.log('response ---- ', response)
+      // console.log('response ---- ', response)
     }
     fetchData()
   }, [])
